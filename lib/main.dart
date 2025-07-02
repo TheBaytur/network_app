@@ -13,8 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Networking',
-      theme: ThemeData(
-        
+      theme: ThemeData(       
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const MyHomePage(title: 'Networking Example'),
@@ -45,11 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Here some data'),
         centerTitle: true,
-      
-        
       ),
-      body: Container(),
-       
+      body: Container(),       
     );
   }
 }
