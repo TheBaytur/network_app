@@ -1,6 +1,13 @@
 class OfficesList {
   List<Office> offices;
   OfficesList({required this.offices});
+
+  factory OfficesList.fromJson(Map<String, dynamic> json) {
+    var officesJson = json['offices'] as List;
+    List<Office> officesList =
+        officesJson.map((office) => Office.fromJson(office)).toList();
+    return OfficesList(offices: officesList);
+  }
 }
 
 class Office {
