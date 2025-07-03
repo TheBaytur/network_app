@@ -10,6 +10,7 @@ class Office {
   String country;
   String lat;
   String lng;
+  final String image;
 
   Office({
     required this.name,
@@ -18,6 +19,7 @@ class Office {
     required this.country,
     required this.lat,
     required this.lng,
+    required this.image,
   });
 
   factory Office.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class Office {
       country: json['country'] as String,
       lat: json['lat'] as String,
       lng: json['lng'] as String,
+      image: json['image'] as String,
     );
   }
 }
