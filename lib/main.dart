@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:network_app/offices.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,37 +30,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late Future<OfficesList> officesList;
+
   @override
   void initState() {
     super.initState();
-    loadData();
+    //loadData();
+    officesList = getOfficesList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Here some data'), centerTitle: true),
+      appBar: AppBar(title: Text('Manual JSON Serialization'), centerTitle: true),
       body: Container(),
     );
   }
 }
 
-Future<http.Response> getData() async {
-  final url = Uri.parse('https://about.google/static/data/locations.json');
-  return await http.get(url);
-}
 
-void loadData() {
-  getData()
-      .then((response) {
-        if (response.statusCode == 200) {
-          print('Data loaded successfully');
-          print(response.body);
-        } else {
-          print('Failed to load data: ${response.statusCode}');
-        }
-      })
-      .catchError((error) {
-        debugPrint('Error occurred: $error');
-      });
-}
