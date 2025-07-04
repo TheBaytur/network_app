@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:network_app/offices.dart';
@@ -43,7 +45,36 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Manual JSON Serialization'), centerTitle: true),
-      body: Container(),
+      body: FutureBuilder<OfficesList>(
+        future: officesList,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.offices.length,
+              itemBuilder: (context, index) {
+                final office = snapshot.data!.offices[index];
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(office.image),
+                    ),
+                    title: Text(office.name),
+                    subtitle: Text('${office.address}, ${office.city}, ${office.country}'),
+                    trailing: Icon(Icons.location_on),
+                  ),
+                );
+              },
+            );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+          // Always return a widget
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 }
