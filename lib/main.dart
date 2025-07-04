@@ -52,15 +52,18 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListView.builder(
               itemCount: snapshot.data!.offices.length,
               itemBuilder: (context, index) {
-                final office = snapshot.data!.offices[index];
+                
                 return Card(
                   child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(office.image),
+                      title: Text('${snapshot.data!.offices[index].name}'),
+                      subtitle: Text('${snapshot.data!.offices[index].address}'),
+                      
+                    
+                    leading: Image.network(
+                      '${snapshot.data!.offices[index].image}',
                     ),
-                    title: Text(office.name),
-                    subtitle: Text('${office.address}, ${office.city}, ${office.country}'),
-                    trailing: Icon(Icons.location_on),
+                    isThreeLine: true,
+                     
                   ),
                 );
               },
@@ -72,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
           // Always return a widget
-          return const SizedBox.shrink();
+          return Center(child: CircularProgressIndicator());
         },
       ),
     );
