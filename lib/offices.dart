@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
 
@@ -22,7 +21,7 @@ class Office {
   String country;
   String lat;
   String lng;
-  final String image;
+  String image;
 
   Office({
     required this.name,
