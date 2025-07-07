@@ -43,7 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Manual JSON Serialization'), centerTitle: true),
+      appBar: AppBar(title: Text('Manual JSON Serialization'), 
+      centerTitle: true),
       body: FutureBuilder<OfficesList>(
         future: officesList,
         builder: (context, snapshot) {
@@ -51,13 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListView.builder(
               itemCount: snapshot.data!.offices.length,
               itemBuilder: (context, index) {
-                
                 return Card(
                   child: ListTile(
                       title: Text('${snapshot.data!.offices[index].name}'),
                       subtitle: Text('${snapshot.data!.offices[index].address}'),
-                      
-                    
                     leading: Image.network(
                       '${snapshot.data!.offices[index].image}',
                     ),
